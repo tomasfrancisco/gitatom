@@ -24,8 +24,8 @@ export default class Homepage extends React.Component { // eslint-disable-line r
     return false;
   }
 
-  navigateToSearch = (value) => {
-    browserHistory.push(`/search#q=${value}`);
+  navigateToSearchPage = (query) => {
+    browserHistory.push(`/search#q=${query}`);
   }
 
   render() {
@@ -37,7 +37,7 @@ export default class Homepage extends React.Component { // eslint-disable-line r
             { name: 'description', content: 'Get a new view of your GitHub Repositories through your favourite editor' },
           ]}
         />
-        <Search placeholder="Type your GitHub username..." onSubmit={this.navigateToSearch} />
+        <Search placeholder="Type your GitHub username..." onSubmit={this.navigateToSearchPage} />
       </Wrapper>
     );
   }

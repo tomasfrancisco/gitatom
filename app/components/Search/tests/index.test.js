@@ -23,23 +23,43 @@ describe('<Search />', () => {
     ).toBe(1);
   });
 
+  it('should set state\'s value when not passed as a prop', () => {
+    expect(renderedComponent.state().value).toEqual('');
+  });
+
+  it('should set state\'s value when passed as prop', () => {
+    const propValue = 'tomasfrancisco';
+    const component = shallow(
+      <Search
+        value={propValue}
+        onSubmit={jest.fn()}
+      />
+    );
+    expect(component.state().value).toEqual(propValue);
+  });
+
   it('should return state\'s value on input change', () => {
-    const value = 'tomasfrancisco';
-    renderedComponent.find('input').simulate('change', { target: { value } });
+    const changeValue = 'newValue';
+    renderedComponent.find('input').simulate('change', { target: { value: changeValue } });
     expect(
       renderedComponent.state().value
-    ).toEqual(value);
+    ).toEqual(changeValue);
   });
 
   describe('onSubmit()', () => {
+    it('should not trigger on keypress', () => {
+      renderedComponent.find('input').simulate('keypress', { charCode: 32 });
+      expect(onSubmit).not.toHaveBeenCalled();
+    });
+
     it('should trigger on enter', () => {
       renderedComponent.find('input').simulate('keypress', { charCode: 13 });
-      expect(onSubmit).toHaveBeenCalled();
+      expect(onSubmit).toHaveBeenCalledWith(renderedComponent.state().value);
     });
 
     it('should trigger on button click', () => {
       renderedComponent.find('button').simulate('click');
-      expect(onSubmit).toHaveBeenCalled();
+      expect(onSubmit).toHaveBeenCalledWith(renderedComponent.state().value);
     });
   });
 });
