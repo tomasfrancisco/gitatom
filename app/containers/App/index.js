@@ -12,6 +12,22 @@
  */
 
 import React from 'react';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
+import styled from 'styled-components';
+
+const Wrapper = styled.main`
+  position: relative;
+  margin: 10px;
+  width: calc(100% - 20px);
+  min-height: calc(100vh - 20px);
+  background-color: #282C34;
+  color: #ABB2BF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -21,9 +37,11 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <div>
+      <Wrapper>
+        <Navbar />
         {React.Children.toArray(this.props.children)}
-      </div>
+        <Footer />
+      </Wrapper>
     );
   }
 }
