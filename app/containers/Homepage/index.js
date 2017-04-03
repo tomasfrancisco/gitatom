@@ -25,7 +25,7 @@ export default class Homepage extends React.Component { // eslint-disable-line r
   }
 
   navigateToSearchPage = (query) => {
-    browserHistory.push(`/search#q=${query}`);
+    browserHistory.push(`/search?q=${query}`);
   }
 
   render() {
