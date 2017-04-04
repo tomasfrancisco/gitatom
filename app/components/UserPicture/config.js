@@ -1,6 +1,6 @@
 const config = {
-  backgroundSize: 7,
-  squareSize: 50,
+  backgroundSize: 5,
+  squareSize: 60,
   squareMargin: 5,
   squareColors: [
     {

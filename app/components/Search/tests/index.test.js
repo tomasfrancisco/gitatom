@@ -38,6 +38,19 @@ describe('<Search />', () => {
     expect(component.state().value).toEqual(propValue);
   });
 
+  it('should return state\'s value on input change when value is passed as a prop', () => {
+    const propValue = 'tomasfrancisco';
+    const changeValue = 'newValue';
+    const component = shallow(
+      <Search
+        value={propValue}
+        onSubmit={jest.fn()}
+      />
+    );
+    component.find('input').simulate('change', { target: { value: changeValue } });
+    expect(component.state().value).toEqual(changeValue);
+  });
+
   it('should return state\'s value on input change', () => {
     const changeValue = 'newValue';
     renderedComponent.find('input').simulate('change', { target: { value: changeValue } });

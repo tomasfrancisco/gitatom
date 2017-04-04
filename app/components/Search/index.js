@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   color: #98C379;
   width: 400px;
   height: 45px;
+  margin-bottom: 55px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -97,7 +98,12 @@ class Search extends React.PureComponent { // eslint-disable-line react/prefer-s
   render() {
     return (
       <Wrapper>
-        <input {...this.props} onChange={this.onChange} onKeyPress={this.onKeyPress} />
+        <input
+          value={this.state.value}
+          placeholder={this.props.placeholder}
+          onChange={this.onChange}
+          onKeyPress={this.onKeyPress}
+        />
         <button src={iconImg} onClick={this.onClick} />
       </Wrapper>
     );
@@ -106,6 +112,7 @@ class Search extends React.PureComponent { // eslint-disable-line react/prefer-s
 
 Search.propTypes = {
   value: PropTypes.string,
+  placeholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };
 

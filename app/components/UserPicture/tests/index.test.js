@@ -11,20 +11,16 @@ describe('<UserPicture />', () => {
     expect(
       shallow(
         <UserPicture image={imageURL} alt={alt} />
-      ).contains(
-        <img alt={alt} src={imageURL} />
-      )
-    ).toEqual(true);
+      ).find('img').length
+    ).toEqual(1);
   });
 
   it('should render an <img> tag with default avatar alt', () => {
     expect(
       shallow(
         <UserPicture image={imageURL} />
-      ).contains(
-        <img alt={'avatar'} src={imageURL} />
-      )
-    ).toEqual(true);
+      ).find('img').prop('alt')
+    ).toEqual('avatar');
   });
 
   it('should not render <img> tag with not passed image', () => {

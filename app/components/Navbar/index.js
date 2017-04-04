@@ -6,6 +6,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router';
 import logoImg from './logo.svg';
 
 const Wrapper = styled.nav`
@@ -23,7 +24,9 @@ const Wrapper = styled.nav`
 function Navbar() {
   return (
     <Wrapper>
-      <img alt="logo" src={logoImg} />
+      <Link to="/">
+        <img alt="logo" src={logoImg} />
+      </Link>
     </Wrapper>
   );
 }
