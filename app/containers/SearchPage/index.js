@@ -12,6 +12,7 @@ import styled from 'styled-components';
 
 import Search from 'components/Search';
 import UserProfile from 'components/UserProfile';
+import ErrorOnFetch from 'components/ErrorOnFetch';
 
 import { makeSelectUser } from './selectors';
 import { fetchGithubUser } from './actions';
@@ -34,6 +35,20 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
   }
 
   render() {
+    const userProfile = this.props.user ? (
+      <UserProfile
+        image={this.props.user.avatar_url}
+        name={this.props.user.name}
+        username={this.props.user.login}
+        bio={this.props.user.bio}
+        location={this.props.user.location}
+      />
+    ) : null;
+
+    const errorOnFetch = this.props.error ? (
+      <ErrorOnFetch error={this.props.error} />
+    ) : null;
+
     return (
       <Wrapper>
         <Helmet
@@ -43,14 +58,8 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
           ]}
         />
         <Search placeholder="Type your GitHub username..." value={this.props.location.query.q} onSubmit={this.getGithubUser} />
-        <UserProfile
-          image={this.props.user.avatar_url}
-          name={this.props.user.name}
-          username={this.props.user.login}
-          bio={this.props.user.bio}
-          location={this.props.user.location}
-        />
-        {this.props.error}
+        {userProfile}
+        {errorOnFetch}
       </Wrapper>
     );
   }
